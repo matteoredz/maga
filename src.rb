@@ -70,11 +70,11 @@ module Maga
         end
       end
 
-      class Commit < Dry::CLI::Command
+      class Push < Dry::CLI::Command
         argument :message, required: true, desc: "The commit message"
         option :mode, default: "regular", values: %w[regular setup force], aliases: ["-m"], desc: "The push mode"
 
-        desc "Commit and push all changes to remote"
+        desc "Push all changes to remote with a commit message"
         def call(**options)
           message = options.fetch(:message)
 
@@ -93,7 +93,7 @@ module Maga
         end
       end
 
-      register "commit", Commit
+      register "push", Push
       register "pull", Pull
       register "sync", Sync
       register "version", Version, aliases: ["-v", "--version"]
